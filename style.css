@@ -1,0 +1,37 @@
+#clearbutton {
+}
+
+#message {
+}
+
+#topcontainer {
+	text-align: center;
+	margin: 0 auto;
+	width:30%;
+}
+
+#tttcontainer {
+	margin: 0 auto;
+	margin-top: 50px;
+	width: 500px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.tttcell {
+	width: 150px;
+	height: 150px;
+	font-size: 130px;
+	font-family: Arial;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+.border-b {
+	border-bottom: 1px solid black;
+}
+
+.border-r {
+	border-right: 1px solid black;
+}
