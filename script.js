@@ -1,4 +1,3 @@
-
 //var tttcells = document.getElementsByClassName('tttcell')
 var pturn = "x";
 var msg = "";
@@ -75,7 +74,7 @@ function checkwinner() {
  	checkTie();
 
 	function s(i) {
-		return $(i).html();
+		return document.getElementById(i).innerHTML;
 	}
  }
 
