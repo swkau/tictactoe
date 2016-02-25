@@ -1,80 +1,46 @@
-/* 
-function select() {
-	if(pturn==="x") {
-		this.style.backgroundColor="red";
-	}
-	if(pturn==="y") {
-		this.style.backgroundColor="blue";
-	}
-} */
 
-var tttcells = document.getElementsByClassName('tttcell')
+//var tttcells = document.getElementsByClassName('tttcell')
 var pturn = "x";
 var msg = "";
-var log = "";
-var quit = "";
 var counter = 0;
 var checkwon = false;
 
+$('#clearButton').on('click', reset);
+
 function reset() {
-document.querySelector('div #a1').innerHTML = "";
-document.querySelector('div #a2').innerHTML = "";
-document.querySelector('div #a3').innerHTML = "";
-document.querySelector('div #b1').innerHTML = "";
-document.querySelector('div #b2').innerHTML = "";
-document.querySelector('div #b3').innerHTML = "";
-document.querySelector('div #c1').innerHTML = "";
-document.querySelector('div #c2').innerHTML = "";
-document.querySelector('div #c3').innerHTML = "";
+	$('.tttcell').html('');
 }
 
-for (var i = 0; i <tttcells.length; i++ ){
+/*for (var i = 0; i <tttcells.length; i++ ){
 tttcells[i].addEventListener("click", startevent)
-}
+}*/
 
-function startevent (event) {
-console.dir(event);
-checksquare();
-checkwinner();
+$('.tttcell').on('click', checksquare);
 
 function checksquare() {
-if(pturn==="x"&&event.target.innerHTML!=="X"&&event.target.innerHTML!=="O"&&quit!==1) { 
- applyColour(event,"x");
- pturn = "o";
-msg = document.querySelector('div #message');
-msg.innerHTML = "Player O's turn, click on a square!";
-//tttcells:hover.style.backgroundColor = red;
-document.getElementById("log").innerHTML = document.getElementById("log").innerHTML + "X plays " + event.target.id + ", ";
- }
- else if(pturn==="o"&&event.target.innerHTML!=="X"&&event.target.innerHTML!=="O"&&quit!==1) {
- applyColour(event,"o");
- pturn = "x";
-msg = document.querySelector('div #message');
-msg.innerHTML = "Player X's turn, click on a square!";
-//tttcells:hover.style.backgroundColor = blue;
-document.getElementById("log").innerHTML = document.getElementById("log").innerHTML + "O plays " + event.target.id + ", ";
- }
-}
 
-function applyColour() {
- if(pturn==="x"){
- event.target.style.backgroundColor = "red";
- event.target.innerHTML = "X";
+if(pturn==="x"&&$(this).text()!=="X"&&$(this).text()!=="O"&&checkwon===false) { 
+ $(this).css({
+ 	color: 'red',
+ 	backgroundColor: '#dddddd'
+ });
+ $(this).html('X');
  counter++;
+ pturn = "o";
+$('#message').text('Player X turn, click on a square!');
+checkwinner();
  }
- else if(pturn==="o") {
-  event.target.style.backgroundColor = "blue";
-  event.target.innerHTML = "O"
-  counter++;
- }
-}
 
-function turnColour(x) {
- if(pturn==="x") {
-  x.style.backgroundColor = "red";
- }
- else if(pturn==="o") {
-  x.style.backgroundColor = "blue";
+ else if(pturn==="o"&&$(this).text()!=="X"&&$(this).text()!=="O"&&checkwon===false) {
+ $(this).css({
+ 	color: 'blue',
+ 	backgroundColor: '#cccccc'
+ });
+  $(this).html('O');
+  counter++;
+ pturn = "x";
+$('#message').text('Player O turn, click on a square!');
+checkwinner();
  }
 }
 
@@ -94,26 +60,25 @@ function checkwinner() {
 	   (s("a1")===s("b2")&&s("b2")===s("c3")&&s("c3")!=="")||
 	   (s("a3")===s("b2")&&s("b2")===s("c1")&&s("c1")!=="")
 		){
-	msg = document.querySelector('div #message');
 	if(pturn==="o"){
-	msg.innerHTML = "X is the winner!";
-	alert("Game Over! X wins!");
+	$('#message').text('X is the winner!');
 	checkwon=true;
+	alert("Game Over! X wins!");
 	}
 	else {
-	msg.innerHTML = "O is the winner!";	
+	$('#message').text('O is the winner!');
+	checkwon=true;	
 	alert("Game Over! O wins!");
-	checkwon=true;
 	}
  	}
 
  	checkTie();
 
 	function s(i) {
-		return document.getElementById(i).innerHTML;
+		return $(i).html();
 	}
  }
-};
+
 
 
 
